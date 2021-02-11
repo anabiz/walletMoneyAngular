@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { SummaryPipe } from './summary.pipe';
 import { CoursesComponent } from './courses-component';
 import { NgModule } from '@angular/core';
@@ -18,6 +19,7 @@ import { FundaccountComponent } from './fundaccount/fundaccount.component';
 import { HomeComponent } from './home/home.component';
 import { AdmintransactionsComponent } from './admin/admintransactions/admintransactions.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NoAccessComponent } from './no-access/no-access.component';
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     AdminpromotionComponent,
     FundaccountComponent,
     HomeComponent,
-    AdmintransactionsComponent
+    AdmintransactionsComponent,
+    NoAccessComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   providers: [
     CoursesService,
+    AuthService,
   ],
   bootstrap: [AppComponent]
 })

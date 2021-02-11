@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FundaccountComponent } from './fundaccount/fundaccount.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { NoAccessComponent } from './no-access/no-access.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent },
   {path: 'admin/dashboard', component: AdmindashboardComponent },
   {path: 'admin/transactions', component:   AdmintransactionsComponent },
+  {path: 'no-acceess', component: NoAccessComponent},
   
 ];
 

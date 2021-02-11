@@ -2,24 +2,73 @@
 <div class="form-use">
   <h1 class="h3 mb-3 fw-normal">Create Account</h1>
 </div>
-  <form class="form align-items-center" id="form">
+  <form class="form align-items-center" id="form" #f="ngForm"  (ngSubmit)="f.form.valid && onSubmit(f.value)">
  
 <div class="formcontrol" >
     <label for="inputEmail" class="visually-hidden">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <input type="email"  
+       ngModel 
+       name="email" 
+       id="inputEmail" 
+       #email=ngModel 
+       class="form-control" 
+       placeholder="Email address" 
+       required 
+       autofocus
+       >
+    <div class="alert alert-denger" *ngIf="email.touched && !email.valid">Email is required</div>
+
 </div>
 <div class="formcontrol" >
-    <label for="inputName" class="visually-hidden">full name</label>
-    <input type="text" id="inputName" class="form-control" name="name" placeholder="fullname" required autofocus>
+    <label for="inputName" class="visually-hidden">Full name</label>
+    <input 
+        type="text" 
+        ngModel 
+        name="name" 
+        id="inputName" 
+        #name=ngModel 
+        class="form-control" 
+        placeholder="full name" 
+        required 
+       >
+    <div class="alert alert-denger" *ngIf="name.touched && !name.valid">name is required</div>
+
 </div>
 <div class="formcontrol" >
     <label for="inputPassword" class="visually-hidden">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <input
+        name="password"
+        type="password" 
+        ngModel 
+        id="inputPassword" 
+        #password=ngModel 
+        class="form-control" 
+        placeholder="password" 
+        required 
+       >
+    <div class="alert alert-denger" *ngIf="password.touched && !password.valid">password is required</div>
+ 
 </div>
 <div class="formcontrol" >
-    <label for="inputPassword" class="visually-hidden">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <label>User type</label>
+        <select name="user_type" class="form-control" ngModel  placeholder="user type"  #accountType=ngModel  required>
+            <option value=""></option>
+            <option value="noob">Noob Account</option>
+            <option value="elit">Elit Account</option>
+        </select>
 </div>
+
+<div class="formcontrol" >
+    <label>Main currency</label>
+        <select name="main_currency" class="form-control" ngModel  placeholder="main currency"  #mainCurrency=ngModel  required>
+            <option value=""></option>
+            <option value="USD">USD</option>
+            <option value="NGN">NGN</option>
+            <option value="DKK">DKK</option>
+            <option value="ILS">ILS</option>
+        </select>
+</div>
+
     <div class="formcontrol" >
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
     </div>

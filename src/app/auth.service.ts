@@ -10,14 +10,21 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient)  { }
 
-  public login(){
-    //return this.httpClient.post(`https://mywalletmoney.herokuapp.com/apiv1/login`);
+  public login(credential){
+    return this.httpClient.post(`https://mywalletmoney.herokuapp.com/apiv1/login`, credential);
+  }
+
+  public register(credential){
+    return this.httpClient.post(`https://mywalletmoney.herokuapp.com/apiv1/register`, credential);
   }
 
   public getTransactions(){
-    
     const result = this.httpClient.get('https://mywalletmoney.herokuapp.com/apiv1/admin/transactions')
     .subscribe(response => console.log(response));
     return result;
+  }
+
+  isLogin(){
+    return false;
   }
 }
