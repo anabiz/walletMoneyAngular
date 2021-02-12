@@ -1,4 +1,4 @@
-import { EmailService } from './../email.service';
+import { logging } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -8,33 +8,32 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-inValidLogin;
+export class LoginComponent  {
+inValidLogin=false;
 
   constructor(
     private authService: AuthService,
     private Routes: Router,
   ) { }
 
-  ngOnInit(): void {
-    const transactions = this.authService.getTransactions();
-    console.log(transactions)
-  }
+ 
 
   onSubmit(input) {
     this.authService.login(input)
-    .subscribe(user =>{
-      //console.log(user)
-      if(user) 
-        this.Routes.navigate(['/dashboard']);
-      else
-        this.inValidLogin = true;
-    })
-   
+    .subscribe((user) =>{
+      if(user && user["token"])
+      localStorage.setItem("userInfo", JSON.stringify(user)); 
+      localStorage.setItem("token", JSON.stringify(user["token"])); 
+      const user1 = this.authService.gettUserFromToken( user["token"]);
+      console.log(user1)
+      user1["is_admin"] ? this.Routes.navigate(['/admin/dashboard']) : this.Routes.navigate(['/dashboard']);;
+    }, err=>{
+      this.inValidLogin = true;
+    });
   }
 
   log(email) {
-    console.log(email)
+    //console.log(email)
   }
 
 }

@@ -1,13 +1,12 @@
+import { UserService } from './user.service';
 import { AuthService } from './auth.service';
 import { SummaryPipe } from './summary.pipe';
-import { CoursesComponent } from './courses-component';
+//import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CourseComponent } from './course/course.component';
-import { CoursesService } from './courses.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -20,13 +19,16 @@ import { HomeComponent } from './home/home.component';
 import { AdmintransactionsComponent } from './admin/admintransactions/admintransactions.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NoAccessComponent } from './no-access/no-access.component';
+//import { JwtInterceptor} from '_helpers';
+import { JwtModule } from "@auth0/angular-jwt";
 
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 
 @NgModule({
   declarations: [
     AppComponent,
-    CoursesComponent,
-    CourseComponent,
     SummaryPipe,
     NavbarComponent,
     RegisterComponent,
@@ -45,10 +47,17 @@ import { NoAccessComponent } from './no-access/no-access.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["http://localhost:3000/apiv1/"],
+        disallowedRoutes: ["http://example.com/examplebadroute/"],
+      },
+    }),
   ],
   providers: [
-    CoursesService,
     AuthService,
+    UserService,
   ],
   bootstrap: [AppComponent]
 })

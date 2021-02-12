@@ -1,1 +1,67 @@
-<p>dashboard works!</p>
+<p *ngIf="isAdmin">dashboard works!</p>
+
+<h3 id="username" *ngIf="user" > Welcome {{user.name}} </h3>
+
+<div id="container">
+
+<div id="subcontainer1">
+  <form id="form1" class="form align-items-center" #f="ngForm"  (ngSubmit)="f.form.valid && transaction(f.value)">
+
+    <h1 class="h3 mb-3 fw-normal">Fund or withdraw</h1>
+ 
+    <label for="inputAmount" class="visually-hidden">Amount</label>
+    <input 
+       type="number"
+       ngModel 
+       name="amount" 
+       id="inputAmount" 
+       #amount=ngModel 
+       class="form-control" 
+       placeholder="0.00" 
+       required 
+       autofocus
+    >
+     <div class="alert alert-denger" *ngIf="amount.touched && !amount.valid">Amount is required</div>
+
+   
+<div class="formcontrol" >
+    <label>Currency</label>
+        <select name="currency" class="form-control" ngModel  placeholder="currency"  #currency=ngModel  required>
+            <option value=""></option>
+            <option value="USD">USD</option>
+            <option value="NGN">NGN</option>
+            <option value="DKK">DKK</option>
+            <option value="ILS">ILS</option>
+             <option value="BRL">BRL</option>
+        </select>
+</div>
+  <div class="alert alert-denger" *ngIf="currency.touched && !currency.valid">currency is required</div>
+
+
+    <div class="formcontrol" >
+    <label>Transaction type</label>
+        <select name="transaction_type" class="form-control" ngModel  placeholder="user type"  #accountType=ngModel  required>
+            <option value=""></option>
+            <option value="credit">Credit</option>
+            <option value="debit">Debit</option>
+        </select>
+    </div>
+    <div class="checkbox mb-3">
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">submit</button>
+  </form>
+</div>
+
+<div  *ngIf="accounts" id="subcontainer2">
+<div *ngFor="let account of accounts" class="card mt-4">
+    <h4 class="card-header">Account currency: {{account.name}}</h4>
+    <div class="card-body">
+        <h6 *ngIf="account.is_main">your main acount</h6>
+        <h6>{{account.name}}</h6>
+        <h6>Account ballance: {{account.amount}}</h6>
+    </div>
+</div>
+</div>
+
+</div>

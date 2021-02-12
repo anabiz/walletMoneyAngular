@@ -1,0 +1,28 @@
+#container{
+/* border:1px solid red; */
+display: flex;
+height: 600px;
+
+}
+
+#subcontainer1{
+  /* border:1px solid green; */
+  width: 30%;
+}
+
+#subcontainer2{
+    /* border:1px solid yellow; */
+    width: 70%;
+}
+
+#form1{
+    width: 80%;
+    margin-top: 20px;
+}
+
+#username{
+    border:1px solid yellow;
+    text-align: center;
+    
+
+}
