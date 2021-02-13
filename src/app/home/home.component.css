@@ -1,0 +1,22 @@
+.home{
+      margin: 0px 0px 0px 0px;
+    width: 100%;
+    height: 640px;
+}
+#appname{
+  color: lightslategray;
+  height: 30%;
+  /* border: 1px solid red; */
+  /* border-top: 200px; */
+}
+/* #text{
+    margin-top: 39px;
+} */
+#statement{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: lighter;
+    color: lightslategray;
+    width: 60%;
+    margin: auto;
+    margin-top: 50%x;
+}

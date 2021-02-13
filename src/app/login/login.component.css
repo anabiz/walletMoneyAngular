@@ -3,6 +3,11 @@
     border: 0px auto;
     /* background-color: blanchedalmond; */
 }
+.myimage{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
 .form{
     width: 40%;
     margin: 0 auto;

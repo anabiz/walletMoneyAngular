@@ -1,6 +1,6 @@
 import { AuthService } from 'src/app/auth.service';
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
     private authService: AuthService,
   ) { }
   
-  canActivate(){
+  canActivate(route, state: RouterStateSnapshot){
       if(this.authService.getUser()["is_admin"]) return true;
       this.router.navigate(['/login']);
       return false;

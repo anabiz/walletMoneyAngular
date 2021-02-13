@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth-guard.service';
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
@@ -18,12 +19,14 @@ import { AdminpromotionComponent } from './admin/adminpromotion/adminpromotion.c
 import { FundaccountComponent } from './fundaccount/fundaccount.component';
 import { HomeComponent } from './home/home.component';
 import { AdmintransactionsComponent } from './admin/admintransactions/admintransactions.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NoAccessComponent } from './no-access/no-access.component';
 //import { JwtInterceptor} from '_helpers';
 import { JwtModule } from "@auth0/angular-jwt";
 import { ViewAccountComponent } from './admin/view-account/view-account.component';
 import { AuthGuard1 } from './auth-guard1.service';
+import { TokenInterceptor } from './token-interceptor.service';
+
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -51,6 +54,7 @@ export function tokenGetter() {
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    //RouterModule.forRoot(Routes, config: {onSameUrlNavigation: 'reload'}),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -64,6 +68,7 @@ export function tokenGetter() {
     UserService,
     AuthGuard,
     AuthGuard1,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

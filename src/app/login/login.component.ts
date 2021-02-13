@@ -20,7 +20,6 @@ inValidLogin=false;
   onSubmit(input) {
     this.authService.login(input)
     .subscribe((user) =>{
-      console.log(user)
       if(user && user["token"])
       localStorage.setItem("userInfo", JSON.stringify(user)); 
       localStorage.setItem("token", JSON.stringify(user["token"])); 

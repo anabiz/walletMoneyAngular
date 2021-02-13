@@ -26,9 +26,16 @@ export class AdmintransactionsComponent implements OnInit {
     this.user = decodeUserToken;
     
   }
+  reloadComponent() {
+    let currentUrl = this.Routes.url;
+        this.Routes.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.Routes.onSameUrlNavigation = 'reload';
+        this.Routes.navigate([currentUrl]);
+  }
 
   async approveTransaction(id){
     console.log(id)
-    await this.adminService.transactionApproval(id)
+    await this.adminService.transactionApproval(id);
+    this.reloadComponent()
   }
 }

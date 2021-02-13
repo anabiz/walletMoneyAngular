@@ -18,7 +18,7 @@ loading;
 users
   constructor(
     private authService: AuthService,
-    private Routes: Router,
+    private router: Router,
     private userService: UserService,
     
   ) { }
@@ -29,12 +29,26 @@ users
   
     this.accounts = await this.userService.getUserAccount(this.user["id"])
     if(!this.accounts) this.loading = true;
+    
+  }
+  reloadComponent() {
+    let currentUrl = this.router.url;
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate([currentUrl]);
   }
 
-  transaction(data){
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
+}
+  async transaction(data){
     console.log(data)
-    let result = this.userService.creditOrDebitAccount(data)
+    let result =await this.userService.creditOrDebitAccount(data)
     console.log(result)
+    this.reloadComponent();
   }
 
   isadmin(){

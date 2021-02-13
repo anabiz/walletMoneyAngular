@@ -21,13 +21,13 @@ export class AdminService {
 
   public async transactionApproval(id){
     console.log("my header",this.header())
-    const response = await axios.post(`http://localhost:3000/apiv1/admin/fundapproval/${id}`, { 'headers': this.userService.header() } )
+    const response = await axios.post(`http://localhost:3000/apiv1/admin/fundapproval/${id}`, { 'headers': this.header()})
     .then(res => {
       console.log(res.data.data)
       return res.data.data;
     })
     .catch((error) => {
-      console.log(error);
+      console.log(error.message);
       return false;
     })
   console.log(response)
@@ -35,17 +35,15 @@ export class AdminService {
   }
   
   public async getUsers(){
-    console.log(this.userService.header())
+  
     const response = await axios.get(`http://localhost:3000/apiv1/admin/users`, { 'headers': this.header() } )
     .then(res => {
-      console.log(res.data.data)
       return res.data.data;
     })
     .catch((error) => {
       console.log(error);
       return false;
     })
-  console.log(response)
   return response;
   }
 

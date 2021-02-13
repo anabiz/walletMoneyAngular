@@ -9,7 +9,7 @@
         <h6>Email : {{user.email}}</h6>
          <h6>Account Type: {{user.user_type}}</h6>
 
-         <a id="{{user.id}}"  (click)="viewAccount($event.target.id)">
+         <a id="{{user.id}}" class="account"  (click)="viewAccount($event.target.id)">
            <button id="{{user.id}}" (click)="viewAccount($event.target.id)" class="w-100 btn btn-lg btn-primary mybtn" >View Accounts</button>
          </a>
  
