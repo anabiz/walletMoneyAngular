@@ -1,6 +1,6 @@
 
 <h3 id="username" *ngIf="user" > Welcome {{user.name}} </h3>
-
+<hr id="line">
 <div  *ngIf="users" id="subcontainer2">
 <div *ngFor="let user of users" class="card mt-4">
     <h4 class="card-header"> {{user.name}} details </h4>

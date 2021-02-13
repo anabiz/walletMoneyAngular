@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth-guard.service';
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
 import { SummaryPipe } from './summary.pipe';
@@ -22,6 +23,7 @@ import { NoAccessComponent } from './no-access/no-access.component';
 //import { JwtInterceptor} from '_helpers';
 import { JwtModule } from "@auth0/angular-jwt";
 import { ViewAccountComponent } from './admin/view-account/view-account.component';
+import { AuthGuard1 } from './auth-guard1.service';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -60,6 +62,8 @@ export function tokenGetter() {
   providers: [
     AuthService,
     UserService,
+    AuthGuard,
+    AuthGuard1,
   ],
   bootstrap: [AppComponent]
 })

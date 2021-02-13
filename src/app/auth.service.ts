@@ -21,7 +21,7 @@ export class AuthService {
 
   public login(credential){
     let enco : any = new HttpHeaders()
-    return this.httpClient.post(`https://pocketcurrency.herokuapp.com/apiv1/login`, credential)
+    return this.httpClient.post(`http://localhost:3000/apiv1/login`, credential)
   }
 
   public register(credential){
@@ -55,6 +55,12 @@ public isAdmin(){
   const [decodeUserToken] = this.loginUserInfo();
   if(decodeUserToken.is_admin) return true;
   return false;
+}
+
+public getUser(){
+  const token = JSON.parse(localStorage.getItem("token"));
+  const jwtHelper = new JwtHelperService();
+  return jwtHelper.decodeToken(token);
 }
 
  public gettUserFromToken(token){

@@ -19,6 +19,13 @@ isAdmin(){
   return this.authService.isAdmin()
 }
 
+isLoginUser(){
+  const user = this.authService.getUser();
+  if(user) return true;
+  return false;
+}
+
+
 
   logout(){
     localStorage.removeItem("userInfo");
@@ -28,6 +35,7 @@ isAdmin(){
 
 
   ngOnInit(): void {
+    this.isLoginUser()
   }
 
 }
