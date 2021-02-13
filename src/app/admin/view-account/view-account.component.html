@@ -1,0 +1,13 @@
+
+
+<div  *ngIf="accounts" >
+<div *ngFor="let account of accounts" class="card mt-4">
+    <h4 class="card-header">Account currency: {{account.name}}</h4>
+    <div class="card-body">
+        <h6 *ngIf="account.is_main">main acount</h6>
+        <h6>{{account.name}}</h6>
+        <h6>Account ballance: {{account.amount}}</h6>
+    </div>
+</div>
+</div>
+

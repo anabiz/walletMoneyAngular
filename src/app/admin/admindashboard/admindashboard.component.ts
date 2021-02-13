@@ -1,7 +1,8 @@
 import { AuthService } from './../../auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component,Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-//import { AuthService } from '../../auth.service';
+import { AdminService } from 'src/app/admin.service';
+
 
 
 @Component({
@@ -10,24 +11,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./admindashboard.component.css']
 })
 export class AdmindashboardComponent implements OnInit{
+ // @Output() accountEvent = new EventEmitter();
   isAdmin ;
-  
+  users;
+  user;
   constructor(
     private authService: AuthService,
     private Routes: Router,
+    private adminService: AdminService,
   ) { }
 
 
   async ngOnInit(): Promise<void> {
-    const transactions =await this.authService.getTransactions();
-    console.log(transactions)
-    console.log(this.isAdmin)
+    this.users =await this.adminService.getUsers();
+    console.log(this.users, "gggggggggg")
     const [decodeUserToken, isexpired] = this.authService.loginUserInfo();
-    console.log(decodeUserToken, isexpired , "jjjjjjjj")
+    this.user = decodeUserToken;
+    
   }
-  //let admin = authService.isAdmin()
-  // isadmi(){
-  //   this.isAdmin = authService.isAdmin();
-  // }
+
+  viewAccount(id){
+    console.log(id)
+    //this.accountEvent.emit(id);
+    this.Routes.navigate([`/admin/viewaccount/${id}`]) 
+  }
  
 }

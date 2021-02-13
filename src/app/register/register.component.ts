@@ -24,7 +24,7 @@ isRegistered;
     .subscribe(user =>{
       console.log(user)
       if(user) 
-        this.Routes.navigate(['/dashboard']);
+        this.Routes.navigate(['/login']);
       else
         this.isRegistered = true;
     })

@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NoAccessComponent } from './no-access/no-access.component';
 //import { JwtInterceptor} from '_helpers';
 import { JwtModule } from "@auth0/angular-jwt";
+import { ViewAccountComponent } from './admin/view-account/view-account.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -40,7 +41,8 @@ export function tokenGetter() {
     FundaccountComponent,
     HomeComponent,
     AdmintransactionsComponent,
-    NoAccessComponent
+    NoAccessComponent,
+    ViewAccountComponent
   ],
   imports: [
     BrowserModule,

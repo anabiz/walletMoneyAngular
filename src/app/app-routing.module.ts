@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
 import { AdmintransactionsComponent } from './admin/admintransactions/admintransactions.component';
+import { ViewAccountComponent } from './admin/view-account/view-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FundaccountComponent } from './fundaccount/fundaccount.component';
 import { HomeComponent } from './home/home.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'account', component:  FundaccountComponent },
   {path: 'dashboard', component: DashboardComponent },
   {path: 'admin/dashboard', component: AdmindashboardComponent },
+  {path: 'admin/viewaccount/:id', component: ViewAccountComponent },
   {path: 'admin/transactions', component:   AdmintransactionsComponent },
   {path: 'no-acceess', component: NoAccessComponent},
   

@@ -1,1 +1,12 @@
-<p>admintransactions works!</p>
+
+<div  *ngIf="transactions" id="subcontainer2">
+<div *ngFor="let transaction of transactions" class="card mt-4">
+    <h4 class="card-header"> Transaction Type: {{transaction.transaction_type}}</h4>
+    <div class="card-body">
+        <h6>Amount : {{transaction.amount}}</h6>
+        <h6>Approved : {{transaction.is_approved.toString()}}</h6>
+         <h6></h6>
+         <button  *ngIf="!transaction.is_approved" id="{{transaction.id}}" class="w-100 btn btn-lg btn-primary" (click)="approveTransaction($event.target.id)">Approve transaction</button>
+    </div>
+</div>
+</div>

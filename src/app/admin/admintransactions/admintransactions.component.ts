@@ -1,15 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AdminService } from 'src/app/admin.service';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
-  selector: 'app-admintransactions',
+  selector: 'admintransactions',
   templateUrl: './admintransactions.component.html',
   styleUrls: ['./admintransactions.component.css']
 })
 export class AdmintransactionsComponent implements OnInit {
 
-  constructor() { }
+  isAdmin ;
+  transactions;
+  user;
+  constructor(
+    private authService: AuthService,
+    private Routes: Router,
+    private adminService: AdminService,
+  ) { }
 
-  ngOnInit(): void {
+
+  async ngOnInit(): Promise<void> {
+    this.transactions =await this.authService.getTransactions();
+    const [decodeUserToken, isexpired] = this.authService.loginUserInfo();
+    this.user = decodeUserToken;
+    
   }
 
+  async approveTransaction(id){
+    console.log(id)
+    await this.adminService.transactionApproval(id)
+  }
 }

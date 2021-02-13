@@ -15,9 +15,15 @@ export class NavbarComponent implements OnInit {
     private Routes: Router,
   ) { }
 
+isAdmin(){
+  return this.authService.isAdmin()
+}
+
 
   logout(){
-    localStorage.removeItem("userInfo")
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("token")
+    this.Routes.navigate(['/login']);
   }
 
 

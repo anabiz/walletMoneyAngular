@@ -1,1 +1,18 @@
-<p>admindashboard works!</p>
+
+<h3 id="username" *ngIf="user" > Welcome {{user.name}} </h3>
+
+<div  *ngIf="users" id="subcontainer2">
+<div *ngFor="let user of users" class="card mt-4">
+    <h4 class="card-header"> {{user.name}} details </h4>
+    <div class="card-body">
+        <h6>Name : {{user.name}}</h6>
+        <h6>Email : {{user.email}}</h6>
+         <h6>Account Type: {{user.user_type}}</h6>
+
+         <a id="{{user.id}}"  (click)="viewAccount($event.target.id)">
+           <button id="{{user.id}}" (click)="viewAccount($event.target.id)" class="w-100 btn btn-lg btn-primary mybtn" >View Accounts</button>
+         </a>
+ 
+    </div>
+</div>
+</div>

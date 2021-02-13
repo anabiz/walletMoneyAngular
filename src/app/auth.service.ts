@@ -1,8 +1,10 @@
+import { UserService } from './user.service';
 import { logging } from 'protractor';
 import { Injectable } from '@angular/core';
 import { HttpClient,  HttpHeaders  } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from "@auth0/angular-jwt";
+import axios from 'axios';
 //import { JwtHelper } from "angular2-jwt"
 
 
@@ -12,24 +14,34 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 })
 export class AuthService {
 
-  constructor(private httpClient: HttpClient)  { }
+  constructor(
+    private httpClient: HttpClient,
+    private userService: UserService
+    )  { }
 
   public login(credential){
     let enco : any = new HttpHeaders()
-    return this.httpClient.post(`http://localhost:3000/apiv1/login`, credential)
+    return this.httpClient.post(`https://pocketcurrency.herokuapp.com/apiv1/login`, credential)
   }
 
   public register(credential){
     return this.httpClient.post(`http://localhost:3000/apiv1/register`, credential);
   }
 
-  public getTransactions(){
-    const token = localStorage.getItem("token")
-    let headers = new HttpHeaders()
-  .set('authorization', `bearer ${token}`)
-    const result = this.httpClient.get('http://localhost:3000/apiv1/admin/transactions', { 'headers': headers } )
-    .subscribe(response => console.log(response));
-    return result;
+  public async getTransactions(){
+
+    const response = await axios.get('http://localhost:3000/apiv1/admin/transactions', { 'headers':this.userService.header() } )
+    .then(res => {
+      console.log(res);
+      console.log(res.data.data)
+      return res.data.data;
+    })
+    .catch((error) => {
+      console.log(error);
+      return false;
+    })
+  console.log(response)
+  return response;
   }
 
  public tokenInfo(token){
@@ -38,6 +50,12 @@ export class AuthService {
     const isexpired = jwtHelper.isTokenExpired(token);
     return [decodeUserToken, isexpired];
   }
+
+public isAdmin(){
+  const [decodeUserToken] = this.loginUserInfo();
+  if(decodeUserToken.is_admin) return true;
+  return false;
+}
 
  public gettUserFromToken(token){
   const jwtHelper = new JwtHelperService();
