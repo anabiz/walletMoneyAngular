@@ -21,23 +21,23 @@ export class AuthService {
 
   public login(credential){
     let enco : any = new HttpHeaders()
-    return this.httpClient.post(`http://localhost:3000/apiv1/login`, credential)
+    return this.httpClient.post(`https://pocketcurrency.herokuapp.com/apiv1/login`, credential)
   }
 
   public register(credential){
-    return this.httpClient.post(`http://localhost:3000/apiv1/register`, credential);
+    return this.httpClient.post(`https://pocketcurrency.herokuapp.com/apiv1/register`, credential);
   }
 
   public async getTransactions(){
 
-    const response = await axios.get('http://localhost:3000/apiv1/admin/transactions', { 'headers':this.userService.header() } )
+    const response = await axios.get('https://pocketcurrency.herokuapp.com/apiv1/admin/transactions', { 'headers':this.userService.header() } )
     .then(res => {
       console.log(res);
       console.log(res.data.data)
       return res.data.data;
     })
     .catch((error) => {
-      console.log(error);
+      console.log("errrrrrr",error);
       return false;
     })
   console.log(response)

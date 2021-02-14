@@ -15,7 +15,7 @@ export class UserService {
   }
 
   public async getUserAccount(id: string) {
-    const response = await axios.get(`http://localhost:3000/apiv1/user/${id}`, { 'headers': this.header() })
+    const response = await axios.get(`https://pocketcurrency.herokuapp.com/apiv1/user/${id}`, { 'headers': this.header() })
       .then(res => {
         console.log(res);
         console.log(res.data.data)
@@ -34,7 +34,7 @@ export class UserService {
   public async creditOrDebitAccount(payload: { amount: number, currency: string, transaction_type: string }) {
     const header =this.header();
     console.log(header)
-    const response = await axios.post(`http://localhost:3000/apiv1/fundaccount`, payload, { 'headers': header })
+    const response = await axios.post(`https://pocketcurrency.herokuapp.com/apiv1/fundaccount`, payload, { 'headers': header })
       .then(res => {
         console.log(res);
         console.log(res.data.data)

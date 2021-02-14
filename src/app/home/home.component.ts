@@ -12,6 +12,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 geturl(){
-  return "url('http://s1.1zoom.net/big0/195/Money_Coins_Bitcoin_Gray_background_Wallet_579838_1280x853.jpg')"
+  return "url('assets/images/image1.jpg')"
 }
 }
