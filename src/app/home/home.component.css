@@ -1,11 +1,14 @@
 .home{
     margin: 0px 0px 0px 0px;
     width: 100%;
-    height: 640px;
+    min-height: 600px;
+    height: auto;
+    /* border: 1px solid red; */
 }
+
 #appname{
   color:green;
-  height: 20%;
+  height: 75px;
   /* border: 1px solid red; */
   /* border-top: 200px; */
 }
