@@ -12,6 +12,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 geturl(){
-  return "url('assets/images/image1.jpg')"
+  return "url('../../assets/images/image1.jpg')"
 }
 }
