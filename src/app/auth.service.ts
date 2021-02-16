@@ -21,16 +21,16 @@ export class AuthService {
 
   public login(credential){
     let enco : any = new HttpHeaders()
-    return this.httpClient.post(`https://pocketcurrency.herokuapp.com/apiv1/login`, credential)
+    return this.httpClient.post(`http://pocketcoin.azurewebsites.net/apiv1/login`, credential)
   }
 
   public register(credential){
-    return this.httpClient.post(`https://pocketcurrency.herokuapp.com/apiv1/register`, credential);
+    return this.httpClient.post(`http://pocketcoin.azurewebsites.net/apiv1/register`, credential);
   }
 
   public async getTransactions(){
 
-    const response = await axios.get('https://pocketcurrency.herokuapp.com/apiv1/admin/transactions', { 'headers':this.userService.header() } )
+    const response = await axios.get('http://pocketcoin.azurewebsites.net/apiv1/admin/transactions', { 'headers':this.userService.header() } )
     .then(res => {
       console.log(res);
       console.log(res.data.data)

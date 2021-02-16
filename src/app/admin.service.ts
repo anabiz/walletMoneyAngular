@@ -21,7 +21,7 @@ export class AdminService {
 
   public async transactionApproval(id){
     console.log("my header",this.header())
-    const response = await axios.get(`https://pocketcurrency.herokuapp.com/admin/fundapproval/${id}`, { 'headers': this.header()})
+    const response = await axios.get(`http://pocketcoin.azurewebsites.net/apiv1/admin/fundapproval/${id}`, { 'headers': this.header()})
     .then(res => {
       console.log(res.data.data)
       return res.data.data;
@@ -36,7 +36,7 @@ export class AdminService {
   
   public async getUsers(){
   
-    const response = await axios.get(`https://pocketcurrency.herokuapp.com/apiv1/admin/users`, { 'headers': this.header() } )
+    const response = await axios.get(`http://pocketcoin.azurewebsites.net/apiv1/admin/users`, { 'headers': this.header() } )
     .then(res => {
       return res.data.data;
     })
